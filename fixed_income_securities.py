@@ -1,4 +1,3 @@
-
 #present value calculation
 def present_value (r, ci, period):
     # r: interest rate
@@ -22,12 +21,10 @@ forward_price = s0/discount_rate(0.08, 4, 9)
 print(forward_price)
 
 #value of forward contract at an intermediate time
-#def forward_price (si, st):
-S0 = 100.0
-St = 125.0
-r = 0.1
-n = 2
-F0 = S0/d(0, 1, r, n)
-#ft=(Ft-F0)*d(t, T)
-ft = St-F0*d(0.5, 1, r, n)
-print('Q7: {:0.1f}'.format(round(ft, 1)))
+def forward_price (Si, r, interest_compound_term, expiration):
+    Fi = Si/discount_rate(r, interest_compound_term, expiration)
+    return Fi
+F0 = forward_price(100, 0.1, 2, 12) #half year ago to half year later
+Ft = forward_price(125, 0.1, 2, 6)  #now to half year later
+ft = (Ft-F0)*discount_rate(0.1, 2, 6)
+print('Current value of forward contract is $', ft)
