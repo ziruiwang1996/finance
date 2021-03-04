@@ -14,7 +14,7 @@ print(present_value(0.1, 500000, 20))
 def discount_rate (r, interest_compound_term, expiration):
     #r: spot rate
     #interest_compound_term e.g. annually=1, quarterly=4
-    #expiration: contract expirate in ? (time unit match with compoun term)
+    #expiration: contract expire in ? (time unit match with compound term)
     d = 1/((1+r/interest_compound_term)**(expiration/(12/interest_compound_term)))
     return d
 s0 = 400 #current stock price per share
