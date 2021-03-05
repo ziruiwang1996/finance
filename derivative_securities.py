@@ -27,6 +27,7 @@ if d*S0 > K :
     lower_option_payoff = d*S0 - K
 else:
     lower_option_payoff = 0
+#solving linear equations
 A = np.matrix([[u*S0, R],[d*S0, R]])
 B = np.matrix([[upper_option_payoff],[lower_option_payoff]])
 A_inv = np.linalg.inv(A)
