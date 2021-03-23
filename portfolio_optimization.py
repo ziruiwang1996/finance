@@ -6,6 +6,7 @@ from datetime import datetime
 from pypfopt.efficient_frontier import EfficientFrontier
 from pypfopt import risk_models
 from pypfopt import expected_returns
+from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 
@@ -56,5 +57,21 @@ print('The portfolio volatility is: ', percent_vol)
 print('The portfolio annual return is: ', percent_ret)
 
 #Portfolio optimization
+#Calculate the expected returns and the annualised sample covariance matrix of assets returns
+mu = expected_returns.mean_historical_return(df)
+S = risk_models.sample_cov(df)
+#Optimize for max sharpe ratio
+ef = EfficientFrontier(mu, S)
+weights = ef.max_sharpe()
+cleaned_weights = ef.clean_weights()
+print(cleaned_weights)
+ef.portfolio_performance(verbose=True)
 
+#Get the discrete allocation of each share/stock
+latest_prices = get_latest_prices(df)
+weights = cleaned_weights
+da = DiscreteAllocation(weights, latest_prices, total_portfolio_value=2700)
+allocation, leftover = da.lp_portfolio()
+print('Discrete allocation: ', allocation)
+print('Funds remaining: ${:.2f}'.format(leftover))
 
