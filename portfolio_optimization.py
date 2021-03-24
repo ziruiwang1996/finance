@@ -1,12 +1,8 @@
 #This program attempts to optimize a user's portfolio using the Efficient Frontier
 from pandas_datareader import data as web
-import panda as pd
+import pandas as pd
 import numpy as np
 from datetime import datetime
-from pypfopt.efficient_frontier import EfficientFrontier
-from pypfopt import risk_models
-from pypfopt import expected_returns
-from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 
@@ -56,6 +52,11 @@ print('The portfolio variance is: ', percent_van)
 print('The portfolio volatility is: ', percent_vol)
 print('The portfolio annual return is: ', percent_ret)
 
+from datetime import datetime
+from pypfopt.efficient_frontier import EfficientFrontier
+from pypfopt import risk_models
+from pypfopt import expected_returns
+from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
 #Portfolio optimization
 #Calculate the expected returns and the annualised sample covariance matrix of assets returns
 mu = expected_returns.mean_historical_return(df)
@@ -74,4 +75,3 @@ da = DiscreteAllocation(weights, latest_prices, total_portfolio_value=2700)
 allocation, leftover = da.lp_portfolio()
 print('Discrete allocation: ', allocation)
 print('Funds remaining: ${:.2f}'.format(leftover))
-
