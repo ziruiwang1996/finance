@@ -52,7 +52,6 @@ print('The portfolio variance is: ', percent_van)
 print('The portfolio volatility is: ', percent_vol)
 print('The portfolio annual return is: ', percent_ret)
 
-from datetime import datetime
 from pypfopt.efficient_frontier import EfficientFrontier
 from pypfopt import risk_models
 from pypfopt import expected_returns
