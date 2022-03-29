@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 
 #Get the stock tickers in portfolio
-assets = ['AAPL', 'TSLA', 'GS', 'SNDL', 'BILI']
+assets = ['AAPL', 'TSLA', 'GS', 'NVDA', 'BILI']
 #Assign weights to stocks (total addup to 1)
 weights = np.array([1000/2700, 1000/2700, 500/2700, 100/2700, 100/2700])
 #Get portfolio start date
